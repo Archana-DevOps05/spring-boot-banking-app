@@ -1,27 +1,18 @@
-## End-to-End Bank Application Deployment using DevSecOps on AWS EKS
+## End-to-End Bank Application Deployment using Docker on AWS.
 - This is a multi-tier bank an application written in Java (Springboot).
-
-![Login diagram](images/login.png)
-![Transactions diagram](images/transactions.png)
 
 ### PRE-REQUISITES FOR THIS PROJECT:
 - AWS Account
-- AWS Ubuntu EC2 instance (t2.medium)
+- AWS Ubuntu EC2 instance (t2.micro)
 - Install Docker
 - Install docker compose
 #
-### DEPLOYMENT:
-| Deployments    | Paths |
-| -------- | ------- |
-| Deployment using Docker and Networking | <a href="#Docker">Click me </a>     |
-| Deployment using Docker Compose | <a href="#dockercompose">Click me </a>     |
-| Deployment using Jenkins on EKS | <a href="#">Click me </a>     |
-| Deployment using Argocd on EKS| <a href="#">Click me </a>     |
 
-#
 ### STEPS TO IMPLEMENT THE PROJECT
 - **<p id="Docker">Deployment using Docker</p>**
-  - Clone the repository
+  - Clone the repository### DEPLOYMENT:
+
+#
   ```bash
   git clone -b DevOps https://github.com/DevMadhup/Springboot-BankApp.git
   ```
@@ -42,14 +33,19 @@
   #
   - Build the Dockerfile
   ```bash
-  docker build -t madhupdevops/springboot-bankapp .
+  docker build -t archanasingh05/springboot-bankapp .
+
   ```
+#
+  ```bash
 > [!Important]
-> Make sure to change docker build command with your DockerHub username.
-  #
+>**Make sure to change the Docker build command with your DockerHub username.**
+   ```
+#
+
   - Create a docker network
   ```bash
-  docker network create bankapp
+  docker network create -d bridge bankapp
   ```
   #
   - Run MYSQL container
@@ -59,7 +55,7 @@
   #
   - Run Application container
   ```bash
-  docker run -itd --name BankApp -e SPRING_DATASOURCE_USERNAME="root" -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql:3306/BankDB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC" -e SPRING_DATASOURCE_PASSWORD="Test@123" --network=bankapp -p 8080:8080 madhupdevops/springboot-bankapp
+  docker run -itd --name BankApp -e SPRING_DATASOURCE_USERNAME="root" -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql:3306/BankDB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC" -e SPRING_DATASOURCE_PASSWORD="Test@123" --network=bankapp -p 8080:8080 archanasingh05/springboot-bankapp
   ```
   #
   - Verify deployment
@@ -89,6 +85,4 @@ docker compose up -d
 ```bash
   http://<public-ip>:8080
 ```
-> [!Important]
-> If you face issues with exiting docker container while running docker compose, run ``` docker compose down``` and then ``` docker compose up -d ```.
-#
+# Result:
