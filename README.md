@@ -86,3 +86,4 @@ docker compose up -d
   http://<public-ip>:8080
 ```
 # Result:
+![staticwebsite](image.png)
