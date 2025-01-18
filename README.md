@@ -14,7 +14,7 @@
 
 #
   ```bash
-  git clone -b DevOps https://github.com/DevMadhup/Springboot-BankApp.git
+  git clone https://github.com/Archana-DevOps05/spring-boot-banking-app.git
   ```
   #
   - Install docker, docker compose and provide neccessary permission
